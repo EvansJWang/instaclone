@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import AppContainer from './container/AppContainer';
+import Main from './Main';
 import rootReducer from './reducers/rootReducer';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 
 const store = createStore(
@@ -17,9 +19,11 @@ const store = createStore(
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-       <AppContainer/>
-      </Provider>
+      <Router>
+        <Provider store={store}>
+          <Main/>
+        </Provider>
+      </Router>
     );
   }
 }

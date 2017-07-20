@@ -1,5 +1,5 @@
 import { SET_PHOTOS, TOGGLE_PHOTO_DETAILS } from '../actions/photos';
-import { UPDATE_NEW_COMMENT_FORM } from '../actions/comments';
+import { UPDATE_NEW_COMMENT_FORM, SUBMIT_NEW_COMMENT_FORM, DELETE_COMMENT } from '../actions/comments';
 import { TOGGLE_LIKES } from '../actions/likes'
 
 function processPhotos(input) {
@@ -18,7 +18,7 @@ function processPhotos(input) {
 
 function togglePhotos(photos, photoId) {
   return photos.map((photo, index) => {
-        if (photo.id === photoId) {
+        if (photo.photoInfo.id === photoId) {
           let toggleValue = !photo.showDetails
           return Object.assign({}, photo, {
             "showDetails": toggleValue
@@ -30,7 +30,7 @@ function togglePhotos(photos, photoId) {
 
 function toggleLikes(photos, photoId) {
   return photos.map((photo, index) => {
-        if (photo.id === photoId) {
+        if (photo.photoInfo.id === photoId) {
           let toggleValue = !photo.likeStatus
           return Object.assign({}, photo, {
             "showDetails": toggleValue
@@ -43,7 +43,7 @@ function toggleLikes(photos, photoId) {
 
 function upDateNewCommentForm(photos, formInformation) {
   return photos.map((photo, index) => {
-        if (photo.id === formInformation.photoId) {
+        if (photo.photoInfo.id === formInformation.photoId) {
           return Object.assign({}, photo, {
             "newCommentForm": formInformation.text
           })
@@ -52,6 +52,27 @@ function upDateNewCommentForm(photos, formInformation) {
       })
   }
 
+
+function submitNewCommentForm(photos, formInformation) {
+  return photos.map((photo, index) => {
+        if (photo.photoInfo.id === formInformation.photoId) {
+          return Object.assign({}, photo, {
+            "newCommentForm": ""
+          })
+        }
+        return photo
+      })
+  }
+
+  function deleteComment(photos, photoId, commentid){
+    return photos.map( photo => {
+        if (photo.photoInfo.id === photoId) {
+         let newComments = photo.photoComments.filter(comment => comment.id !== commentid)
+         photo.photoComments = newComments;
+        }
+       return photo
+     })
+   }
 
 
 
@@ -65,6 +86,10 @@ export default function photos(state = [], action = {}) {
       return toggleLikes(state, action.photoId)
     case UPDATE_NEW_COMMENT_FORM:
       return upDateNewCommentForm(state, action.formInformation)
+    case SUBMIT_NEW_COMMENT_FORM:
+      return submitNewCommentForm(state, action.formInformation)
+    case DELETE_COMMENT:
+      return deleteComment(state, "1", action.commentId)
   default: return state;
   }
 }
