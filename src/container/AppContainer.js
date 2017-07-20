@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPhotos } from '../actions/photos';
-import { fetchComments } from '../actions/comments';
+import { fetchPhotos, toggleDetails } from '../actions/photos';
+import { updateNewCommentForm } from '../actions/comments';
+import { toggleLikes } from '../actions/likes'
 
 
 class AppContainer extends Component {
   componentDidMount(){
     this.props.fetchPhotos();
-    this.props.fetchComments();
   }
 
   render(){
@@ -21,8 +21,7 @@ class AppContainer extends Component {
 function mapStateToProps(state){
   return {
     photos: state.photos,
-    comments: state.comments
   }
 }
 
-export default connect(mapStateToProps, { fetchPhotos, fetchComments })(AppContainer);
+export default connect(mapStateToProps, { fetchPhotos, toggleDetails, updateNewCommentForm, toggleLikes })(AppContainer);
