@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPhotos, toggleDetails } from '../actions/photos';
+import { fetchUserPhotos, toggleDetails } from '../actions/photos';
 import { updateNewCommentForm, submitNewCommentForm, deleteComment } from '../actions/comments';
 import { toggleLikes } from '../actions/likes';
 import Feed from '../Feed';
 
-class AppContainer extends Component {
+class AccountContainer extends Component {
   componentDidMount(){
-    this.props.fetchPhotos();
+    this.props.fetchUserPhotos(this.props.users.id);
   }
 
 
@@ -19,8 +19,7 @@ class AppContainer extends Component {
             updateNewCommentForm: this.props.updateNewCommentForm,
             submitNewCommentForm: this.props.submitNewCommentForm,
             deleteComment: this.props.deleteComment,
-            users: this.props.users,
-
+            users: this.props.users
           }}
           toggleLikes={this.props.toggleLikes}
           toggleDetails={this.props.toggleDetails}
@@ -37,4 +36,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { fetchPhotos, toggleDetails, updateNewCommentForm, toggleLikes, submitNewCommentForm, deleteComment })(AppContainer);
+export default connect(mapStateToProps, { fetchUserPhotos, toggleDetails, updateNewCommentForm, toggleLikes, submitNewCommentForm, deleteComment })(AccountContainer);
