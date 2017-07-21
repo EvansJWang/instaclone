@@ -23,28 +23,19 @@ class loginForm extends Component {
     if (this.props.userInfo.loggedin === false) {
       return(
         <div className="container">
-            <div className="row">
-              <div className="Absolute-Center is-Responsive">
-                <div id="logo-container"></div>
-
-                    <form className="form-group input-group center-block" onSubmit={this.handleSubmit}>
-
-                      <div className="input-group">
-                      <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                      <input className="form-control"
-                      name="login"
-                      type="text"
-                      placeholder="Username"
-                      value={this.props.logInForm}
-                      onChange={this.handleChange}/>
-                      </div>
-
-                      <input type="submit" className="center-block"
-                      value="Login"/>
-                  </form>
-              
-            </div>
-        </div>
+            <form className="form-group input-group center-block" onSubmit={this.handleSubmit}>
+              <div className="input-group">
+              <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+              <input className="form-control"
+              name="login"
+              type="text"
+              placeholder="Username"
+              value={this.props.logInForm}
+              onChange={this.handleChange}/>
+              </div>
+              <input type="submit" className="center-block btn btn-primary btn-lg btn-block"
+              value="Login"/>
+          </form>
       </div>)
     } else {
         return(

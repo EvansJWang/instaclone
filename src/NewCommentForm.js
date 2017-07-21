@@ -30,10 +30,11 @@ class NewCommentForm extends Component {
     return(
 
       <form onSubmit={this.handleSubmit}>
-        New Comment:
-        <input name="NewComment" type="text" value={this.props.newCommentForm} onChange={this.handleChange}/>
-        <input type="submit"
-        value="Comment"/>
+        <div className="form-group">
+          New Comment:
+          <input name="NewComment" className="form-control" type="text" value={this.props.newCommentForm} onChange={this.handleChange}/>
+          <input type="submit" className="btn btn-primary" value="Comment"/>
+      </div>
       </form>
         )
       }
