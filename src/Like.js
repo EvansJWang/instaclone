@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Like extends Component {
   render(){
     return(
-      <span>{this.props.like} likes</span>
+      <span className="glyphicon glyphicon-heart-empty">{this.props.like} likes</span>
   )}
 }
 

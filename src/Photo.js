@@ -30,7 +30,7 @@ onClick(e){
   render(){
     return(
       <div>
-        <a href="#" onClick={this.onClick}>{this.props.photo.url}</a>
+        <button onClick={this.onClick}><img src={this.props.photo.url}/></button>
         <Like like={this.props.like}/>
         {this.showComments(this.props.comments)}
       </div>

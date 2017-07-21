@@ -7,7 +7,7 @@ showPhotos(){
   return(
      this.props.photos.map( (photo, i) => {
           return (
-           <li key={i}>
+           <li className="list-group-item" key={i}>
              <Photo
                photo={photo.photoInfo}
                showDetails={photo.showDetails}
@@ -26,7 +26,7 @@ showPhotos(){
 
   render() {
   return (
-      <ul>
+      <ul className="list-group">
         {this.props.photos.length > 0 ? (this.showPhotos()) : (<div> There are no photos  </div>)}
       </ul>
   )
