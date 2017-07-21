@@ -16,19 +16,23 @@ class Header extends Component {
   loginWithRedirect(){
     if (this.props.userInfo.loggedin === false) {
       return(
-        <nav>
-          <Link to="/feed">Feed</Link>
-          <Link to="/login">Login</Link>
+        <nav className="navbar navbar-default navbar-static-top">
+          <ul className="nav nav-tabs">
+            <li role="presentation" className="active"><Link to="/feed">Feed</Link></li>
+            <li><Link to="/login">Login</Link></li>
+          </ul>
         </nav>
      )
     } else {
         return(
           <span>
             <span>@{this.props.userInfo.username}</span>
-            <nav>
-              <Link to="/feed">Feed</Link>
-              <Link to="/account">Account</Link>
-              <a href="#" onClick={this.onClick}>Logout</a>
+            <nav className="navbar navbar-default navbar-static-top">
+              <ul className="nav nav-tabs">
+                <li role="presentation" className="active"><Link to="/feed">Feed</Link></li>
+                <li><Link to="/account">Account</Link></li>
+              <button className="navbar navbar-default navbar-static-top" onClick={this.onClick}>Logout</button>
+            </ul>
             </nav>
           </span>
      )

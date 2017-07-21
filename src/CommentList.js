@@ -7,7 +7,7 @@ class CommentList extends Component {
     return(
        this.props.comments.map( (comment, i) => {
             return (
-             <li key={i}>
+             <li className="list-group-item" key={i}>
                <CommentItem
                  comment={comment.content}
                  commentId={comment.id}
@@ -26,7 +26,7 @@ class CommentList extends Component {
 render(){
   return(
     <div>
-      <ul>
+      <ul className="list-group">
         {this.props.comments.length > 0 ? (this.showComments()) : (<div> There are no comments  </div>)}
       </ul>
       <NewCommentForm

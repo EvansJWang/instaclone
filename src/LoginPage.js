@@ -22,17 +22,21 @@ class loginForm extends Component {
   loginWithRedirect(){
     if (this.props.userInfo.loggedin === false) {
       return(
-      <form onSubmit={this.handleSubmit}>
-        Username:
-        <input
-        name="login"
-        type="text"
-        placeholder="Username"
-        value={this.props.logInForm}
-        onChange={this.handleChange}/>
-        <input type="submit"
-        value="Login"/>
-    </form>)
+        <div className="container">
+            <form className="form-group input-group center-block" onSubmit={this.handleSubmit}>
+              <div className="input-group">
+              <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+              <input className="form-control"
+              name="login"
+              type="text"
+              placeholder="Username"
+              value={this.props.logInForm}
+              onChange={this.handleChange}/>
+              </div>
+              <input type="submit" className="center-block btn btn-primary btn-lg btn-block"
+              value="Login"/>
+          </form>
+      </div>)
     } else {
         return(
       <Redirect to={{

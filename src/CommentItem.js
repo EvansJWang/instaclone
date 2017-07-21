@@ -14,7 +14,7 @@ class CommentItem extends Component {
   deleteButton(){
     if (this.props.users.id === this.props.commenterId) {
       return(
-    <a href="#" onClick={this.onClick}>Delete</a>
+    <button onClick={this.onClick}>Delete</button>
     )
   }
 }
@@ -22,7 +22,10 @@ class CommentItem extends Component {
 
   render(){
   return(
-    <span>{this.props.comment} {this.deleteButton()}</span>
+    <div>
+      <span className="list-group-item list-group-item-success">{this.props.comment} </span>
+      <span>{this.deleteButton()}</span>
+    </div>
       )
     }
   }
