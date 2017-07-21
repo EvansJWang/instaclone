@@ -24,6 +24,7 @@ const initialState = [
 
 function processPhotos(input) {
   return(
+
     input.map((item)=>{
       item["showDetails"] = false
       item["likeStatus"] = false
@@ -84,6 +85,17 @@ function submitNewCommentForm(photos, formInformation) {
       })
   }
 
+  function addNewCommentForm(photos, formInformation) {
+    return photos.map((photo, index) => {
+          if (photo.photoInfo.id === formInformation.photoId) {
+            photo.photoComments.push(
+              { content: formInformation.content }
+            )
+          }
+          return photo
+        })
+    }
+
   function deleteComment(photos, photoId, commentid){
     return photos.map( photo => {
         if (photo.photoInfo.id === photoId) {
@@ -109,7 +121,7 @@ export default function photos(state = initialState, action = {}) {
     case UPDATE_NEW_COMMENT_FORM:
       return upDateNewCommentForm(state, action.formInformation)
     case SUBMIT_NEW_COMMENT_FORM:
-      return submitNewCommentForm(state, action.formInformation)
+      return addNewCommentForm(submitNewCommentForm(state, action.formInformation), action.formInformation)
     case DELETE_COMMENT:
       return deleteComment(state, "1", action.commentId)
     default:
