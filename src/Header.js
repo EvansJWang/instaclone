@@ -31,7 +31,7 @@ class Header extends Component {
               <ul className="nav nav-tabs">
                 <li role="presentation" className="active"><Link to="/feed">Feed</Link></li>
                 <li><Link to="/account">Account</Link></li>
-              <button onClick={this.onClick}>Logout</button>
+              <button className="navbar navbar-default navbar-static-top" onClick={this.onClick}>Logout</button>
             </ul>
             </nav>
           </span>
