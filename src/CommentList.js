@@ -11,7 +11,9 @@ class CommentList extends Component {
                <CommentItem
                  comment={comment.content}
                  commentId={comment.id}
+                 commenterId={comment.commenterId}
                  deleteComment={this.props.updateNewCommentForm.deleteComment}
+                 users={this.props.updateNewCommentForm.users}
                  />
              </li>
            )

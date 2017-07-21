@@ -11,9 +11,18 @@ class CommentItem extends Component {
     this.props.deleteComment(this.props.commentId)
   }
 
+  deleteButton(){
+    if (this.props.users.id === this.props.commenterId) {
+      return(
+    <a href="#" onClick={this.onClick}>Delete</a>
+    )
+  }
+}
+
+
   render(){
   return(
-    <span>{this.props.comment} <a href="#" onClick={this.onClick}>Delete</a> </span>
+    <span>{this.props.comment} {this.deleteButton()}</span>
       )
     }
   }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-
 import Photo from './Photo';
 
 class Feed extends Component {
-
 
 showPhotos(){
   return(

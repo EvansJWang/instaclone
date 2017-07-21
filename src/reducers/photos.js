@@ -1,6 +1,26 @@
-import { SET_PHOTOS, TOGGLE_PHOTO_DETAILS } from '../actions/photos';
+import { SET_PHOTOS, SET_USER_PHOTOS, TOGGLE_PHOTO_DETAILS } from '../actions/photos';
 import { UPDATE_NEW_COMMENT_FORM, SUBMIT_NEW_COMMENT_FORM, DELETE_COMMENT } from '../actions/comments';
 import { TOGGLE_LIKES } from '../actions/likes'
+
+const initialState = [
+  {photoInfo: {
+    id: "",
+    url: "",
+    uploader_id: ""
+  },
+   photoComments:[
+     {
+     id: "",
+     commenter_id: "",
+     photo_id: "",
+     content: ""
+   }
+ ],
+   photoLikes: 0
+ }
+]
+
+
 
 function processPhotos(input) {
   return(
@@ -76,9 +96,11 @@ function submitNewCommentForm(photos, formInformation) {
 
 
 
-export default function photos(state = [], action = {}) {
+export default function photos(state = initialState, action = {}) {
   switch(action.type) {
     case SET_PHOTOS:
+     return processPhotos(action.photos);
+    case SET_USER_PHOTOS:
      return processPhotos(action.photos);
     case TOGGLE_PHOTO_DETAILS:
       return togglePhotos(state, action.photoId)
@@ -90,6 +112,7 @@ export default function photos(state = [], action = {}) {
       return submitNewCommentForm(state, action.formInformation)
     case DELETE_COMMENT:
       return deleteComment(state, "1", action.commentId)
-  default: return state;
+    default:
+      return state;
   }
 }
