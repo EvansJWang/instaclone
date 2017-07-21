@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
@@ -5,16 +7,15 @@ export const RESET_LOGIN_FORM = 'RESET_LOGIN_FORM'
 
 export function logIn(userInfo){
   return dispatch => {
-    let dummyRes = {
-      id: "1"
-    }
+    axios.post("http://tranquil-sands-93773.herokuapp.com/sessions", { username: userInfo.username }).then(res => {
 
-    let user = {
-      username: userInfo.username,
-      id: dummyRes.id,
-      loggedin: true
-    }
-    dispatch( dispatchLogIn(user))
+      let user = {
+        username: userInfo.username,
+        id: res.data,
+        loggedin: true
+      }
+       dispatch( dispatchLogIn(user))
+   })
   }
 }
 

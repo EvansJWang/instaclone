@@ -20,8 +20,9 @@ class NewCommentForm extends Component {
     e.preventDefault();
     this.props.updateNewCommentForm.submitNewCommentForm(
       {
-        text: this.props.newCommentForm,
-        photoId: this.props.photoId
+        content: this.props.newCommentForm,
+        photoId: this.props.photoId,
+        userId: this.props.updateNewCommentForm.users.id
       }
     )
   }

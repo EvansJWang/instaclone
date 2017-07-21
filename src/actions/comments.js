@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const UPDATE_NEW_COMMENT_FORM = 'UPDATE_NEW_COMMENT_FORM'
 export const SUBMIT_NEW_COMMENT_FORM = 'SUBMIT_NEW_COMMENT_FORM'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -18,8 +20,17 @@ export function dispatchNewCommentForm(formInformation){
 
 
 export function submitNewCommentForm(formInformation){
+
   return dispatch => {
-   dispatch(dispatchSubmitNewCommentForm(formInformation));
+
+    axios.post(`http://tranquil-sands-93773.herokuapp.com/photos/${formInformation.photoId}/comments`, { newComment: formInformation }).then(res => {
+
+      let comment = {
+        content: formInformation.content,
+        photoId: formInformation.photoId
+      }
+    dispatch(dispatchSubmitNewCommentForm(comment));
+   })
   }
 }
 
